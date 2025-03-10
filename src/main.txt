@@ -1,0 +1,48 @@
+#include <Servo.h>
+#include <Arduino.h>
+
+Servo microServo;
+Servo standardServo;
+
+int upper_finger_pin = 9;
+int lower_finger_pin = 10;
+
+
+void setup() {
+  // put your setup code here, to run once:
+  microServo.attach(upper_finger_pin);
+  standardServo.attach(lower_finger_pin);
+
+  // Hone motors to initial posistions
+  standardServo.write(90);
+  microServo.write(0);
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+
+  // First move lower finger joint then upper
+  for (int pos = 90; pos < 160; pos +=1) {
+    standardServo.write(pos);
+    delay(25);
+  }
+
+  for (int pos = 0; pos < 180; pos +=1) {
+    microServo.write(pos);
+    delay(25);
+  }
+
+  delay(500);
+
+  for (int pos = 180; pos >= 0; pos -=1) {
+    microServo.write(pos);
+    delay(25);
+  }
+
+  for (int pos = 160; pos >= 90; pos -=1) {
+    standardServo.write(pos);
+    delay(25);
+  } 
+
+  delay(500);
+}

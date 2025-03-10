@@ -1,0 +1,2 @@
+# For port issues, have to run the following to give permission
+sudo chmod a+rw /dev/ttyUSB0
